@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sunnyweather.R
 import com.example.sunnyweather.WeatherActivity
 import com.example.sunnyweather.logic.model.Place
+import kotlinx.android.synthetic.main.activity_weather.*
+import kotlinx.android.synthetic.main.now.*
+
 //传入的PlaceFragment对象可以调用相应的PlaceViewModel
 class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: List<Place>) :
     RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
@@ -25,16 +28,25 @@ class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: L
         holder.itemView.setOnClickListener {
             val position=holder.adapterPosition
             val place=placeList[position]
-            val intent= Intent(parent.context,WeatherActivity::class.java).apply {
-                putExtra("location_lng",place.location.lng)
-                putExtra("location_lat",place.location.lat)
-                putExtra("place_name",place.name)
-                Log.d("syx","lllll${place.name}")
+//            重新选择城市,如果本就在WeatherActivity页面上，fragment页面就会关闭
+            val activity=fragment.activity
+            if (activity is WeatherActivity) {
+                activity.drawerLayout.closeDrawers()
+                activity.viewModel.locationLng=place.location.lng
+                activity.viewModel.locationLat=place.location.lat
+                activity.viewModel.placeName=place.name
+                activity.refreshWeather()
+            }else {
+                val intent = Intent(parent.context, WeatherActivity::class.java).apply {
+                   putExtra("location_lng",place.location.lng)
+                    putExtra("location_lat",place.location.lat)
+                    putExtra("place_name",place.name)
+                }
+                fragment.startActivity(intent)
+                fragment.activity?.finish()
             }
 //            在跳转到WeatherActivity之前先调用PlaceViewModel的savePlace（）方法来存储搜索城市
             fragment.viewModel.savePlace(place)
-            fragment.startActivity(intent)
-            fragment.activity?.finish()
         }
         return holder
     }
