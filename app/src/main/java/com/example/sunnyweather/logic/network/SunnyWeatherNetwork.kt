@@ -10,6 +10,17 @@ import kotlin.coroutines.suspendCoroutine
 
 //定义一个统一网络数据源访问入口，对所有网络请求的api进行封装
 object SunnyWeatherNetwork {
+
+//    网络数据源访问入口对新增WeatherService接口进行封装
+    private val weatherService=ServiceCreator.create(WeatherService::class.java)
+
+    suspend fun getDailyWeather(lng:String,lat:String)= weatherService.getDailyWeather(lng,lat).await()
+
+    suspend fun getRealtimeWeather(lng:String,lat:String)= weatherService.getRealtimeWeather(lng,lat).await()
+
+
+
+
 //    创建PlaceService接口的动态代理对象
     private val placeService = ServiceCreator.create<PlaceService>()
 //suspend fun 是挂起函数，有利于实现以异步编程和并发编程,调用接口中的searchPlaces(）函数，发起搜索城市数据的请求

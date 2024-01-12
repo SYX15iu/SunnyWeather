@@ -17,4 +17,8 @@ val placeLiveData = Transformations.switchMap(searchLiveData) { query ->
     fun searchPlaces(query: String) {
         searchLiveData.value = query
     }
+
+    fun savePlace(place: Place)=Repository.savePlace(place)
+    fun getsavedPlace()=Repository.getsavedPlace()
+    fun isPlaceSaved()=Repository.isPlaceSaved()
 }
