@@ -106,9 +106,11 @@ class WeatherActivity : AppCompatActivity() {
         placeName.text=viewModel.placeName
         val currentTempText = "${realtime.temperature.toInt()} ℃"
         currentTemp.text = currentTempText
+//        获取天气的情况是晴天还是多云啥的
         currentSky.text = getSky(realtime.skycon).info
         val currentPM25Text = "空气指数 ${realtime.airQuality.aqi.chn.toInt()}"
         currentAQI.text = currentPM25Text
+//       背景照片
         nowLayout.setBackgroundResource(getSky(realtime.skycon).bg)
         // 填充forecast.xml布局中的数据
         forecastLayout.removeAllViews()

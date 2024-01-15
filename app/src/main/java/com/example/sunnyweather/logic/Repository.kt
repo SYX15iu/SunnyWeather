@@ -44,7 +44,9 @@ fun searchPlaces(query: String) = fire(Dispatchers.IO) {
 
 //    获取天气信息
     fun refreshWeather(lng: String, lat: String) = fire(Dispatchers.IO) {
+//    coroutineScope用于声明协程的作用域
         coroutineScope {
+//            async，await等关键字是异步
             val deferredRealtime = async {
                 SunnyWeatherNetwork.getRealtimeWeather(lng, lat)
             }

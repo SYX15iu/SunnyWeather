@@ -4,17 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp">
-
+<!--日期-->
     <TextView
         android:id="@+id/dateInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_weight="4"/>
+<!--天气状态照片-->
     <ImageView
         android:id="@+id/skyIcon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"/>
+        android:layout_width="31dp"
+        android:layout_height="27dp" />
+<!--    天气状态-->
     <TextView
         android:id="@+id/skyInfo"
         android:layout_width="0dp"
@@ -22,7 +24,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="3"
         android:gravity="center"/>
-
+<!--最高和最低气温-->
     <TextView
         android:id="@+id/temperatureInfo"
         android:layout_width="0dp"

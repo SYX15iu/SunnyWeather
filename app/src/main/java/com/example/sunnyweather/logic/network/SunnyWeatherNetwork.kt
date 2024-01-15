@@ -13,9 +13,9 @@ object SunnyWeatherNetwork {
 
 //    网络数据源访问入口对新增WeatherService接口进行封装
     private val weatherService=ServiceCreator.create(WeatherService::class.java)
-
+//搜索未来几天的天气状况
     suspend fun getDailyWeather(lng:String,lat:String)= weatherService.getDailyWeather(lng,lat).await()
-
+//搜索当日的天气状况
     suspend fun getRealtimeWeather(lng:String,lat:String)= weatherService.getRealtimeWeather(lng,lat).await()
 
 

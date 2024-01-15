@@ -9,7 +9,7 @@ import com.google.gson.Gson
 
 object PlaceDao {
 
-
+//保存查询过的数据
     fun savePlace(place: Place) {
 //        将place对象存储在sharePreferences文件中，将place对象转换为json字符串
         sharedPreferences().edit { putString("place", Gson().toJson(place))
