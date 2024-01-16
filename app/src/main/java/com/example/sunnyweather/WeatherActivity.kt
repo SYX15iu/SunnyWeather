@@ -26,7 +26,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class WeatherActivity : AppCompatActivity() {
+
+
     val viewModel by lazy { ViewModelProvider(this).get(WeatherViewModel::class.java) }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val decorView = window.decorView
@@ -35,6 +40,7 @@ class WeatherActivity : AppCompatActivity() {
                 window.statusBarColor = Color.TRANSPARENT
         setContentView(R.layout.activity_weather)
         if (viewModel.locationLng.isEmpty()) {
+//            intent的传入在PlaceAdapter文件中
             viewModel.locationLng = intent.getStringExtra("location_lng") ?: ""
         }
         if (viewModel.locationLat.isEmpty()) {
@@ -91,6 +97,7 @@ class WeatherActivity : AppCompatActivity() {
 
 //    下拉刷新
     fun refreshWeather() {
+//    调用WeatherViewModel中的refreWeather获取最近的经纬度
         viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
         swipeRefresh.isRefreshing = true
     }

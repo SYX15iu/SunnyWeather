@@ -56,7 +56,7 @@ class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: L
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val place = placeList[position]
         holder.placeName.text = place.name
-        Log.d("syx","kkkkkk${place.name}")
+//        Log.d("syx","kkkkkk${place.name}")
         holder.placeAddress.text = place.address
     }
     override fun getItemCount() = placeList.size

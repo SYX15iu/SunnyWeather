@@ -19,12 +19,12 @@ object SunnyWeatherNetwork {
     suspend fun getRealtimeWeather(lng:String,lat:String)= weatherService.getRealtimeWeather(lng,lat).await()
 
 
-
-
 //    创建PlaceService接口的动态代理对象
     private val placeService = ServiceCreator.create<PlaceService>()
 //suspend fun 是挂起函数，有利于实现以异步编程和并发编程,调用接口中的searchPlaces(）函数，发起搜索城市数据的请求
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
+
+
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
